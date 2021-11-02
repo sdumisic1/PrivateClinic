@@ -1,0 +1,30 @@
+<h1 id="tableLabel">Lista pacijenata</h1>
+
+<p>Lista svih pacijenata koji su imaju karton u ovoj bolnici.</p>
+
+<p *ngIf="!patients"><em>Ucitavanje...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="patients">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Ime i prezime</th>
+      <th>JMBG</th>
+      <th>Spol</th>
+      <th>Datum rodjenja</th>
+      <th>Adresa </th>
+      <th>Broj telefona</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let patient of patients">
+      <td>{{ patient.patientId }}</td>
+      <td>{{ patient.nameSurname }}</td>
+      <td>{{ patient.jmbg }}</td>
+      <td>{{ patient.gender }}</td>
+      <td>{{ patient.birthDate | date:'mediumDate'}}</td>
+      <td>{{ patient.address }}</td>
+      <td>{{ patient.phoneNumber }}</td>
+    </tr>
+  </tbody>
+</table>

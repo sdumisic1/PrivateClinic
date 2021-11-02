@@ -1,0 +1,43 @@
+<h4>Azuriraj postojecu evidenciju</h4>
+<br />
+
+<form #createAdmission="ngForm" name="form" (ngSubmit)="onClickSubmit()">
+  <div class="row mb-3">
+    <label class="col-sm-2 col-form-label">Izaberite pacijenta</label>
+    <div class="col-sm-5">
+      <select [(ngModel)]="admissions.patientId" name="patientId" id="patientId">
+        <option *ngFor="let patient of patients" [ngValue]="patient.patientId">
+          {{patient.nameSurname}}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label class="col-sm-2 col-form-label">Datum evidencije</label>
+    <div class="col-sm-5">
+      <input type="text" [disabled]="true" class="form-control" [(ngModel)]="admissions.dateAndTime" id="dateString" name="dateString">
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label class="col-sm-2 col-form-label">Doktor</label>
+    <div class="col-sm-5">
+      <select [(ngModel)]="admissions.staffId" name="staffId" id="staffId">
+        <option *ngFor="let doctor of doctors" [ngValue]="doctor.staffId">
+          {{doctor.name}} {{doctor.surname}}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-10">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" [(ngModel)]="admissions.isEmergency" id="gridCheck1" name="checkbox">
+        <label class="form-check-label" for="gridCheck1">
+          Da li je hitni prijem?
+        </label>
+      </div>
+    </div>
+  </div><br />
+  <button [disabled]="!form.$dirty" type="submit" class="btn btn-primary">Spasi</button>
+</form>
+

@@ -1,0 +1,59 @@
+<h1 id="tableLabel">Lista evidencija</h1>
+
+<p>Lista svih evidencija u ovoj bolnici.</p>
+<button (click)="CreateNew()">Kreiraj novu evidenciju</button>
+<br />
+<br />
+<form >
+  <div class="form-row mb-12">
+    <div class="col-2">
+      <input type="date" [(ngModel)]="startDate" id="start" name="start" [max]="endDate">
+    </div>
+    <label class="col-form-label">-</label>
+    <div class="col-2">
+      <input type="date" [(ngModel)]="endDate" id="start" name="start" [min]="startDate">
+    </div>
+    <div class="col-1">
+      <button (click)="GetSearchResults()" style="height : 80% ">Pretrazi</button>
+    </div>
+    <div class="col-1">
+      <button (click)="GetAdmissions()" style="height : 80% ">Clear</button>
+    </div>
+  </div>
+</form>
+<p *ngIf="!admissions"><em>Ucitavanje...</em></p>
+
+<br />
+  <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="admissions">
+
+    <thead>
+      <tr>
+        <th>HITNO</th>
+        <th>ID</th>
+        <th>Datum i vrijeme</th>
+        <th>Ime i prezime pacijenta</th>
+        <th>Ime i prezime doktora</th>
+        <th>ID Nalaza </th>
+        <th> </th>
+        <th> </th>
+        <th> </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let admission of admissions">
+        <td>  <span *ngIf="admission.isEmergency">!!</span></td>
+        <td>{{ admission.admissionId }}</td>
+        <td>{{ admission.dateAndTime | date: 'mediumDate' }}</td>
+        <td>{{ admission.nameSurname }}</td>
+        <td>{{ admission.staffName}} {{admission.staffSurname}}</td>
+        <td>{{ admission.reportId}} </td>
+        <td>
+          <button (click)="UpdateExistingReport(admission.reportId)">Uredi nalaz</button>
+        </td>
+        <td><button (click)="SetAdmissionDetailsId(admission.admissionId)">Uredi evidenciju</button></td>
+        <td><button (click)="DeleteAdmission(admission.admissionId)">Izbrisi evidenciju</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+

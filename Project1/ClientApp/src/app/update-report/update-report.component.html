@@ -1,0 +1,20 @@
+<h4>Azuriraj detalje nalaza za evidenciju</h4>
+<br />
+
+
+<form #updateReport="ngForm" (ngSubmit)="onClickSubmit()">
+
+  <div class="row mb-3">
+    <label class="col-sm-2 col-form-label">Opis nalaza</label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" [(ngModel)]="report.description" id="inputEmail3" name="email">
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label class="col-sm-2 col-form-label">Datum evidencije</label>
+    <div class="col-sm-5">
+      <input type="text" [disabled]="true" class="form-control" [(ngModel)]="report.dateAndTime" id="dateString" name="dateString">
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Spasi</button>
+</form>
